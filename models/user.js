@@ -10,16 +10,20 @@ const userSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
+		min: 8,
 	},
 	name: {
 		type: String,
 		required: true,
+		min: 1,
 	},
 	surname: {
 		type: String,
+		min: 1,
 	},
 	country: {
 		type: String,
+		min: 1,
 	},
 	dateOfBirth: {
 		type: Date,

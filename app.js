@@ -23,7 +23,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/expenses", expensesRouter);
 app.use("/api/incomes", incomesRouter);
-app.use("/api/userAccount", userAccountRouter);
+app.use("/api/accounts", userAccountRouter);
 
 app.get("/", (req, res) => {
 	res.send("Server is working!");

@@ -1,12 +1,4 @@
 class categoriesController {
-	getAllCategories(req, res) {
-		try {
-			res.send("Get all category");
-		} catch (err) {
-			res.send(err);
-		}
-	}
-
 	getCategory(req, res) {
 		try {
 			res.send("Get category");

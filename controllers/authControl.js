@@ -23,7 +23,9 @@ class AuthController {
 
 			await user.save();
 			res.status(200).json({ massage: "Registration completed" });
-		} catch (err) {}
+		} catch (err) {
+			res.json({ massage: "Validation error!" });
+		}
 	};
 
 	loginUser = async (req, res) => {

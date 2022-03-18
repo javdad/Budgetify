@@ -1,15 +1,7 @@
 class expensesController {
-	getAllExpenses(req, res) {
-		try {
-			res.send("Get all expenses");
-		} catch (err) {
-			res.send(err);
-		}
-	}
-
 	getExpense(req, res) {
 		try {
-			res.send("Get expense by account");
+			res.send("Get expense");
 		} catch (err) {
 			res.send(err);
 		}

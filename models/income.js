@@ -5,6 +5,7 @@ const incomeSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
+		min: 1,
 	},
 	amount: {
 		type: Number,
@@ -18,8 +19,18 @@ const incomeSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
+
+	category: {
+		ref: "categories",
+		type: Schema.Types.ObjectId,
+	},
+
 	account: {
 		ref: "accounts",
+		type: Schema.Types.ObjectId,
+	},
+	user: {
+		ref: "users",
 		type: Schema.Types.ObjectId,
 	},
 });

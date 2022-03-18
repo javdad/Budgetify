@@ -7,6 +7,11 @@ const categorySchema = new Schema({
 		required: true,
 		unique: true,
 	},
+
+	type: {
+		type: String,
+		required: true,
+	},
 });
 
 module.exports = mongoose.model("categories", categorySchema);
