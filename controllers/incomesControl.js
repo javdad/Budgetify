@@ -5,10 +5,10 @@ const errorHandler = require("../utils/errorHandler");
 class incomesController {
 	getIncomes = async (req, res) => {
 		try {
-			const incomes = await Income.find({ user: req.user._id });
-			res.status(200).json(incomes);
+			const incomes = await Income.find({ userId: req.user._id });
+			if (incomes.length === 0)
+				return res.status(404).json({ message: "There is no any income" });
 		} catch (err) {
-			console.log(err);
 			errorHandler(res, err);
 		}
 	};
@@ -21,8 +21,8 @@ class incomesController {
 				name,
 				amount,
 				currency,
-				account: account._id,
-				user: req.user._id,
+				accountId: account._id,
+				userId: req.user._id,
 			});
 			await newIncome.save();
 			res.status(201).json({ message: "Income created!" });

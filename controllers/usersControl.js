@@ -1,12 +1,13 @@
 const User = require("../models/user");
+const errorHandler = require("../utils/errorHandler");
 
 class Controller {
 	getAccount = async (req, res) => {
 		try {
 			const user = await User.findOne({ email: req.user.email });
-			if (user) res.status(200).json({ user });
+			if (user) return res.status(200).json({ user });
 		} catch (err) {
-			console.log(err);
+			errorHandler(err);
 		}
 	};
 
@@ -22,17 +23,18 @@ class Controller {
 					(user.dateOfBirth = dateOfBirth || user.dateOfBirth);
 			}
 			await user.save();
+			return res.status(200).json("Account updated!");
 		} catch (err) {
-			console.log(err);
+			errorHandler(err);
 		}
 	};
 
 	deleteAccount = async (req, res) => {
 		try {
 			await User.findOneAndDelete({ email: req.user.email });
-			res.status(200).json("Account deleted!");
+			return res.status(200).json("Account deleted!");
 		} catch (err) {
-			console.log(err);
+			errorHandler(err);
 		}
 	};
 }

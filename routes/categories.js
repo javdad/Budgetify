@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/categoriesControl");
+const Auth = require("../middleware/Auth");
 
-router.get("/", controller.getCategory);
-router.post("/", controller.createCategory);
-router.put("/:id", controller.updateCategory);
-router.delete("/:id", controller.deleteCategory);
+router.get("/", Auth, controller.getCategory);
+router.post("/", Auth, controller.createCategory);
+router.put("/", Auth, controller.updateCategory);
+router.delete("/", Auth, controller.deleteCategory);
 
 module.exports = router;

@@ -1,4 +1,3 @@
-const { date } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -23,14 +22,14 @@ const expenseSchema = new Schema({
 		ref: "categories",
 		type: Schema.Types.ObjectId,
 	},
-	account: {
+	accountId: {
 		ref: "accounts",
 		type: Schema.Types.ObjectId,
 	},
-	user: {
+	userId: {
 		ref: "users",
 		type: Schema.Types.ObjectId,
 	},
 });
 
-module.exports = mongoose.model("accounts", accountSchema);
+module.exports = mongoose.model("expenses", expenseSchema);

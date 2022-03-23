@@ -25,11 +25,11 @@ const incomeSchema = new Schema({
 		type: Schema.Types.ObjectId,
 	},
 
-	account: {
+	accountId: {
 		ref: "accounts",
 		type: Schema.Types.ObjectId,
 	},
-	user: {
+	userId: {
 		ref: "users",
 		type: Schema.Types.ObjectId,
 	},

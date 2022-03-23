@@ -22,7 +22,7 @@ const accountSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
-	user: {
+	userId: {
 		ref: "users",
 		type: Schema.Types.ObjectId,
 	},

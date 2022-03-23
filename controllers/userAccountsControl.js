@@ -1,21 +1,22 @@
 const Account = require("../models/account");
+const errorHandler = require("../utils/errorHandler");
 
 class userAccountController {
 	getAccounts = async (req, res) => {
 		try {
-			const accounts = await Account.find({ user: req.user._id });
-			if (accounts.length > 0) return res.status(200).json({ accounts });
-			res.status(404).json({ message: "There is no any account!" });
+			const accounts = await Account.find({ userId: req.user._id });
+			if (accounts.length === 0)
+				return res.status(404).json({ message: "There is no any account!" });
+			return res.status(200).json({ accounts });
 		} catch (err) {
-			console.log(err);
+			errorHandler(err);
 		}
 	};
 
 	createAccount = async (req, res) => {
 		try {
 			const { title, description, currency } = req.body;
-			const account = Account.findOne({ title: req.body.title });
-			console.log(account);
+			const account = await Account.findOne({ title: req.body.title });
 			if (account.title === title)
 				return res.status(400).json({ message: "Try another title" });
 
@@ -23,13 +24,12 @@ class userAccountController {
 				title,
 				description,
 				currency,
-				user: req.user._id,
+				userId: req.user._id,
 			});
 			await newAccount.save();
 			return res.status(200).json({ message: "Account created!" });
 		} catch (err) {
-			console.log(err.message);
-			res.status(400).json(err.message);
+			errorHandler(err);
 		}
 	};
 
@@ -37,19 +37,18 @@ class userAccountController {
 		try {
 			res.send("Update account");
 		} catch (err) {
-			res.send(err);
+			errorHandler(err);
 		}
 	}
 
-	deleteAccount(req, res) {
+	deleteAccount = async (req, res) => {
 		try {
-			const account = Account.find({ _id: req.body._id });
-			console.log(req.body._id);
-			res.send(account);
+			await Account.deleteOne({ _id: req.body._id });
+			return res.status(200).json({ message: "Account deleted!" });
 		} catch (err) {
-			res.send(err);
+			errorHandler(err);
 		}
-	}
+	};
 }
 
 module.exports = new userAccountController();
