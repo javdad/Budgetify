@@ -1,6 +1,8 @@
 const Income = require("../models/income");
 const Account = require("../models/account");
+const Category = require("../models/category");
 const errorHandler = require("../utils/errorHandler");
+const incomeValidator = require("../validators/incomeValidator");
 
 class incomesController {
 	getIncomes = async (req, res) => {
@@ -15,17 +17,27 @@ class incomesController {
 
 	createIncome = async (req, res) => {
 		try {
-			const { name, amount, currency } = req.body;
-			const account = await Account.findOne({ user: req.user._id });
+			const validate = incomeValidator(req.body);
+			if (validate.error) return res.status(400).json(validate.error.message);
+
+			const { description, amount, currency, categoryName } = req.body;
+			const account = await Account.findOne({ userId: req.user._id });
+
+			const category = await Category.findOne({ name: categoryName });
+
 			const newIncome = new Income({
-				name,
+				categoryId: category._id,
+				description,
 				amount,
 				currency,
 				accountId: account._id,
 				userId: req.user._id,
 			});
-			await newIncome.save();
-			res.status(201).json({ message: "Income created!" });
+
+			await newIncome.save().then((account.balance += amount));
+			await account.save();
+
+			return res.status(201).json({ message: "Income created!" });
 		} catch (err) {
 			errorHandler(res, err);
 		}
@@ -33,7 +45,14 @@ class incomesController {
 
 	updateIncome = async (req, res) => {
 		try {
-			res.send("Update income");
+			const { _id } = req.params;
+			const { description, amount } = req.body;
+			await Income.findOneAndUpdate(
+				{ _id },
+				{ description, amount },
+				{ new: true }
+			);
+			return res.status(200).json({ message: "Income updated!" });
 		} catch (err) {
 			errorHandler(res, err);
 		}
@@ -41,9 +60,9 @@ class incomesController {
 
 	deleteIncome = async (req, res) => {
 		try {
-			await Income.deleteOne({ _id: req.body._id }).then(
-				res.status(200).json({ message: "Income deleted!" })
-			);
+			const { _id } = req.params;
+			await Income.deleteOne({ _id });
+			return res.status(200).json({ message: "Income deleted!" });
 		} catch (err) {
 			errorHandler(res, err);
 		}

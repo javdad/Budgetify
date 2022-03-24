@@ -12,6 +12,7 @@ const categorySchema = new Schema({
 		type: String,
 		required: true,
 	},
+
 	userId: {
 		ref: "users",
 		type: Schema.Types.ObjectId,
