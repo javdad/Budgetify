@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const incomeSchema = new Schema({
-	name: {
+	description: {
 		type: String,
 		required: true,
 		min: 1,
@@ -20,9 +20,10 @@ const incomeSchema = new Schema({
 		default: Date.now,
 	},
 
-	category: {
+	categoryId: {
 		ref: "categories",
 		type: Schema.Types.ObjectId,
+		required: true,
 	},
 
 	accountId: {

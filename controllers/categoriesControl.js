@@ -8,7 +8,7 @@ class categoriesController {
 				return res.status(404).json({ message: "There is no any catagory" });
 			return res.status(200).json(categories);
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 
@@ -28,24 +28,29 @@ class categoriesController {
 			await newCategory.save();
 			return res.status(201).json({ message: "Category created!" });
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 
 	updateCategory = async (req, res) => {
 		try {
-			res.send("Update category");
+			const { _id } = req.params;
+			const { name, type } = req.body;
+
+			await Category.findOneAndUpdate({ _id }, { name, type }, { new: true });
+			return res.status(201).json({ message: "Category updated!" });
 		} catch (err) {
-			res.send(err);
+			errorHandler(res, err);
 		}
 	};
 
 	deleteCategory = async (req, res) => {
 		try {
-			await Category.deleteOne({ _id: req.body._id });
+			const { _id } = req.params;
+			await Category.deleteOne({ _id });
 			return res.status(200).json({ message: "Expense deleted!" });
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 }

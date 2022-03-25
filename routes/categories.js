@@ -5,7 +5,7 @@ const Auth = require("../middleware/Auth");
 
 router.get("/", Auth, controller.getCategory);
 router.post("/", Auth, controller.createCategory);
-router.put("/", Auth, controller.updateCategory);
-router.delete("/", Auth, controller.deleteCategory);
+router.put("/:_id", Auth, controller.updateCategory);
+router.delete("/:_id", Auth, controller.deleteCategory);
 
 module.exports = router;

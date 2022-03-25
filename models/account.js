@@ -5,7 +5,6 @@ const accountSchema = new Schema({
 	title: {
 		type: String,
 		required: true,
-		unique: true,
 	},
 	description: {
 		type: String,
@@ -21,6 +20,10 @@ const accountSchema = new Schema({
 	dateOfCreation: {
 		type: Date,
 		default: Date.now,
+	},
+	dateOfUpdate: {
+		type: Date,
+		default: null,
 	},
 	userId: {
 		ref: "users",

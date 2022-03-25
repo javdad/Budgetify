@@ -1,5 +1,6 @@
 const Account = require("../models/account");
 const errorHandler = require("../utils/errorHandler");
+const accountValidator = require("../validators/accountValidator");
 
 class userAccountController {
 	getAccounts = async (req, res) => {
@@ -7,18 +8,17 @@ class userAccountController {
 			const accounts = await Account.find({ userId: req.user._id });
 			if (accounts.length === 0)
 				return res.status(404).json({ message: "There is no any account!" });
-			return res.status(200).json({ accounts });
+			return res.status(200).json(accounts);
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 
 	createAccount = async (req, res) => {
 		try {
+			const validate = accountValidator(req.body);
+			if (validate.error) return res.status(400).json(validate.error.message);
 			const { title, description, currency } = req.body;
-			const account = await Account.findOne({ title: req.body.title });
-			if (account.title === title)
-				return res.status(400).json({ message: "Try another title" });
 
 			const newAccount = new Account({
 				title,
@@ -29,24 +29,35 @@ class userAccountController {
 			await newAccount.save();
 			return res.status(200).json({ message: "Account created!" });
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 
-	updateAccount(req, res) {
+	updateAccount = async (req, res) => {
 		try {
-			res.send("Update account");
+			const validate = accountValidator(req.body);
+			if (validate.error) return res.status(400).json(validate.error.message);
+
+			const { title, description, currency } = req.body;
+			const { _id } = req.params;
+
+			await Account.findOneAndUpdate(
+				{ _id },
+				{ title, description, currency },
+				{ new: true }
+			);
+			return res.status(200).json({ message: "Account updated!" });
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
-	}
+	};
 
 	deleteAccount = async (req, res) => {
 		try {
-			await Account.deleteOne({ _id: req.body._id });
+			await Account.deleteOne({ _id: req.params._id });
 			return res.status(200).json({ message: "Account deleted!" });
 		} catch (err) {
-			errorHandler(err);
+			errorHandler(res, err);
 		}
 	};
 }
