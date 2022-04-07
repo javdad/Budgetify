@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const potentialToken = localStorage.getItem('auth-token')
     if (potentialToken !== null) {
       this.auth.setSession(potentialToken)

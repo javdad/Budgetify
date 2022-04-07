@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +13,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   declarations: [],
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -25,7 +27,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatInputModule,
     MatToolbarModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    FormsModule,
   ]
 })
 export class SharedModule { }

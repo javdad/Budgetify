@@ -17,7 +17,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
 
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
   
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
@@ -30,7 +30,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.loginForm.disable()
 
     this.authSub = this.auth.login(this.loginForm.value).subscribe(
