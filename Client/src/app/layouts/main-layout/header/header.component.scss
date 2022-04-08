@@ -1,0 +1,19 @@
+.header__toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-menu__button {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.header__logout a {
+    color: rgb(95, 95, 95);
+}

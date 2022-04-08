@@ -1,0 +1,37 @@
+<div class="auth-login__container">
+  <section class="auth-login__wrapper">
+    <header class="header">
+      <h2>Wellcome</h2>
+      <p>Log In</p>
+    </header>
+
+    <section class="main-content">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="main-content__form"
+      >
+        <mat-form-field class="form__row" appearance="outline">
+          <mat-label>email</mat-label>
+          <input type="email" matInput formControlName="email" />
+          <mat-error>Please, enter valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form__row" appearance="outline">
+          <mat-label>password</mat-label>
+          <input type="password" matInput formControlName="password" />
+          <mat-error>Please, enter valid password</mat-error>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          class="login-form__submit-button"
+          mat-raised-button
+          [disabled]="loginForm.invalid || loginForm.disabled"
+        >
+          Login
+        </button>
+      </form>
+    </section>
+  </section>
+</div>

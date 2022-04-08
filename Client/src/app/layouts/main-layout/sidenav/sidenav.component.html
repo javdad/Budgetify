@@ -1,0 +1,13 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [(opened)]="opened" mode="side">
+    <ul>
+      <li class="sidenav-list__item">
+        <a href="#">Categories</a>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button (click)="sidenav.toggle()">open</button>
+    <h1>Here will be main content</h1>
+  </mat-sidenav-content>
+</mat-sidenav-container>
