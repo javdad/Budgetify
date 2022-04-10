@@ -6,8 +6,7 @@ const passport = require("passport");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 const categoriesRouter = require("./routes/categories");
-const expensesRouter = require("./routes/expenses");
-const incomesRouter = require("./routes/incomes");
+const transactionsRouter = require("./routes/transactions");
 const userAccountRouter = require("./routes/user-account");
 
 const app = express();
@@ -21,8 +20,7 @@ require("./middleware/passport")(passport);
 app.use("/api/users", usersRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/categories", categoriesRouter);
-app.use("/api/expenses", expensesRouter);
-app.use("/api/incomes", incomesRouter);
+app.use("/api/transactions", transactionsRouter);
 app.use("/api/accounts", userAccountRouter);
 
 app.get("/", (req, res) => {

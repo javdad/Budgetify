@@ -1,3 +1,10 @@
-<app-header></app-header>
-<app-sidenav></app-sidenav>
-<app-footer></app-footer>
+<div class="main-page__container">
+  <app-header></app-header>
+  <div class="main__content">
+    <div class="sidenav">
+      <router-outlet></router-outlet>
+    </div>
+    <app-aside></app-aside>
+  </div>
+  <app-footer></app-footer>
+</div>
