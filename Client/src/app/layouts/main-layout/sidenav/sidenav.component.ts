@@ -1,17 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
+
+import { Account } from 'src/app/shared/interfaces/accountInterface';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
   opened = true;
   
-  accounts: any;
+  accounts: Account[] = [];
+  accountSub!: Subscription
 
   constructor(private account: AccountService) {
+  }
+
+  ngOnDestroy(): void {
+    if (this.accountSub){
+      this.accountSub.unsubscribe()
+    }
   }
   
   ngOnInit(): void {

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { Account } from 'src/app/shared/interfaces/accountInterface';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -7,6 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class AccountComponent  {
 
-  @Input() account: any;
+  @Input() account!: Account;
 
 }

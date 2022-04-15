@@ -12,18 +12,24 @@ import { SidenavComponent } from './layouts/main-layout/sidenav/sidenav.componen
 import { NotFoundComponent } from './not-found/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: '', component: AuthLayoutComponent, children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: AuthLoginComponent}
-    ]},
-    {path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
-      {path: '', component: SidenavComponent, canActivate:[AuthGuard], children: [
-        {path: '', component: TransactionsComponent},
-        {path: 'categories', component: CategoriesComponent},
-        {path: 'statistics', component: StatisticsComponent},
-    ]}
-  ]},
-  {path: '**', component: NotFoundComponent}
+  {
+    path: '', component: AuthLayoutComponent, children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: AuthLoginComponent }
+    ]
+  },
+  { 
+    path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
+      {
+        path: '', component: SidenavComponent, canActivate:[AuthGuard], children: [
+          { path: '', component: TransactionsComponent },
+          { path: 'categories', component: CategoriesComponent },
+          { path: 'statistics', component: StatisticsComponent },
+        ]
+      }
+    ]
+  },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
