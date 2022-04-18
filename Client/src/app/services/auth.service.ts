@@ -22,7 +22,7 @@ export class AuthService {
     }
     
     setSession(token: string) {
-        const expiresIn = Date.now() + 60*60;
+        const expiresIn = Date.now() + 60 * 60 * 1000;
         localStorage.setItem('auth-token', token);
         localStorage.setItem('expiresIn', String(expiresIn));
         this.token = token
@@ -34,7 +34,7 @@ export class AuthService {
 
     isAuthenticated() {
         const expiresIn = localStorage.getItem('expiresIn');
-        if (expiresIn) return Date.now() < Number(expiresIn);
+        if (expiresIn) return Date.now() < Number(expiresIn)         
         return false
     }
 

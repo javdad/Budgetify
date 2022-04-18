@@ -14,5 +14,4 @@ export class AccountService {
   getAccounts(): Observable<Account[]> {
     return this.http.get<Account[]>('http://localhost:3000/api/accounts')
   }
-
 }
