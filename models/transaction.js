@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const expenseSchema = new Schema({
-	description: {
+const transactionSchema = new Schema({
+	type: {
 		type: String,
 		required: true,
+	},
+	title: {
+		type: String,
+		required: true,
+	},
+	description: {
+		type: String,
+	},
+	payee: {
+		type: String,
 	},
 	amount: {
 		type: Number,
@@ -12,15 +22,15 @@ const expenseSchema = new Schema({
 	},
 	currency: {
 		type: String,
-		required: true,
 	},
 	dateOfCreation: {
 		type: Date,
 		default: Date.now,
 	},
-	category: {
+	categoryId: {
 		ref: "categories",
 		type: Schema.Types.ObjectId,
+		required: true,
 	},
 	accountId: {
 		ref: "accounts",
@@ -32,4 +42,4 @@ const expenseSchema = new Schema({
 	},
 });
 
-module.exports = mongoose.model("expenses", expenseSchema);
+module.exports = mongoose.model("transactions", transactionSchema);

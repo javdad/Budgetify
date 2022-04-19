@@ -1,13 +1,26 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav [(opened)]="opened" mode="side">
-    <ul>
-      <li class="sidenav-list__item">
-        <a href="#">Categories</a>
-      </li>
-    </ul>
+<mat-sidenav-container hasBackdrop="false">
+  <mat-sidenav #sidenav [(opened)]="opened" mode="over">
+    <div class="close-button__wrapper">
+      <button class="sidenav-close__button" (click)="sidenav.close()">
+        Close
+      </button>
+    </div>
+
+    <app-account
+      *ngFor="let account of accounts"
+      [account]="account"
+    ></app-account>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <button (click)="sidenav.toggle()">open</button>
-    <h1>Here will be main content</h1>
+    <div class="sidenav-content__container">
+      <div>
+        <button class="sidenav-open__button" (click)="sidenav.open()">
+          Accounts
+        </button>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

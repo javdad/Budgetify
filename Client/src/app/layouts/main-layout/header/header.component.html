@@ -6,8 +6,25 @@
       </button>
       <span>Budgetify</span>
     </div>
+
+    <div class="header__nav">
+      <a routerLinkActive="active">
+        <button routerLink="categories" mat-button>Categories</button>
+      </a>
+
+      <a routerLink="statistics">
+        <button mat-button>Statistics</button>
+      </a>
+
+      <a routerLink="Admin">
+        <button mat-button>Admin</button>
+      </a>
+    </div>
+
     <div class="header__logout">
-      <a href="#"><mat-icon>logout</mat-icon></a>
+      <button mat-icon-button (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+      </button>
     </div>
   </mat-toolbar>
 </header>

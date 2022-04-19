@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { User } from "../shared/interfaces";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+
+import { User } from "../shared/interfaces/userInterface";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
     }
     
     setSession(token: string) {
-        const expiresIn = Date.now() + 60*60;
+        const expiresIn = Date.now() + 60 * 60 * 1000;
         localStorage.setItem('auth-token', token);
         localStorage.setItem('expiresIn', String(expiresIn));
         this.token = token
@@ -33,7 +34,7 @@ export class AuthService {
 
     isAuthenticated() {
         const expiresIn = localStorage.getItem('expiresIn');
-        if (expiresIn) return Date.now() < Number(expiresIn);
+        if (expiresIn) return Date.now() < Number(expiresIn)         
         return false
     }
 
