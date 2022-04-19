@@ -3,3 +3,12 @@ export interface Category {
     name: string,
     type: string
 }
+
+export interface CreateCategory {
+    name: string,
+    type: string,
+}
+export interface UpdateCategory {
+    name: string,
+    type: string,
+}
