@@ -4,8 +4,8 @@ mat-sidenav-container {
 
 
 mat-sidenav {
-    background-color: rgb(207, 203, 203);
-    width: 15rem;
+    background-color: #f7f7f7;
+    width: 18rem;
     
     .close-button__wrapper {
         display: flex;
@@ -15,7 +15,7 @@ mat-sidenav {
 
 mat-sidenav-content {
     background-color: #fff;
-    padding: 1rem;
+    padding: 1rem 3rem ;
 
     .sidenav-content__container {
         display: flex;

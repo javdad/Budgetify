@@ -1,0 +1,43 @@
+<div class="create-container">
+  <div class="container-top">
+    <header class="create__header">
+      <h2 class="header__title">Create Account</h2>
+
+      <button class="header__close-btn" mat-mini-fab (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </header>
+
+    <mat-divider></mat-divider>
+
+    <main class="create__main">
+      <form>
+        <mat-form-field class="account__title" appearance="outline">
+          <mat-label>Title:</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-form-field class="account__describtion" appearance="outline">
+          <mat-label>Description:</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-form-field class="account__currency" appearance="standard">
+          <mat-label>Currency:</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let currency of currencies"
+              [value]="currency"
+              >{{ currency }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </main>
+  </div>
+
+  <footer class="create__footer">
+    <button mat-stroked-button (click)="onCloseClick()">Cancel</button>
+    <button mat-stroked-button class="save-btn">Save</button>
+  </footer>
+</div>

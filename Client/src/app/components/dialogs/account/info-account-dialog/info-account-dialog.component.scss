@@ -1,0 +1,100 @@
+
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 25rem;
+    height: 30rem;
+}
+
+.balance-negative {
+    color: orangered !important;
+}
+
+.account__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 3rem;
+
+    .header__title {
+        font-weight: 700;
+        color: #333;
+    }
+    
+    .account-header__right {
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+
+        min-width: 10rem;
+    }
+    
+    .account__balance {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #11ee11;
+    }
+
+    mat-icon {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .header__close-btn {
+        width: 2rem;
+        height: 2rem;
+        margin: -1.6rem -1rem 0 0;
+    }
+}
+
+.account__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 1rem;
+
+    width: 100%;
+    height: 100%;
+
+    .contet-header {
+        font-weight: 700;
+        color: #444;
+
+        margin: 0.3rem;
+    }
+
+    .description__wrapper {
+
+        p {
+            min-height: 5rem;
+            
+            border: 2px solid rgb(236, 235, 235);
+            border-radius: 0.5rem;
+            
+            padding: 0.5rem;
+        }
+    }
+
+    .currency__wrapper {
+        .currency__header {
+            display: flex;
+        }
+    }
+}
+
+.account__footer {
+    display: flex;
+    justify-content: center;
+
+    min-height: 3rem;
+
+    button {
+        background-color: #e1e1e1;
+        color: #555;
+        font-weight: 700;
+    }
+}

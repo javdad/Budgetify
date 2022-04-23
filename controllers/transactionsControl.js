@@ -21,22 +21,21 @@ class transactionsController {
 			const validate = transactionValidator(req.body);
 			if (validate.error) return res.status(400).json(validate.error.message);
 
-			const { title, description, type, amount, categoryTitle, payee } =
+			const { title, description, type, amount, categoryId, accountId, payee } =
 				req.body;
 
-			const account = await Account.findOne({ userId: req.user._id });
-			const category = await Category.findOne({ title: categoryTitle });
+			const account = await Account.findOne({ _Id: req.body.accountId });
 
 			const newTransaction = new Transaction({
 				title,
 				description,
 				type,
 				amount,
-				payee: payee || req.user._id,
+				payee: payee || req.user.name,
 				amount,
 				currency: account.currency,
-				categoryId: category._id,
-				accountId: account._id,
+				categoryId,
+				accountId,
 				userId: req.user._id,
 			});
 
@@ -55,10 +54,10 @@ class transactionsController {
 	updateTransaction = async (req, res) => {
 		try {
 			const { _id } = req.params;
-			const { description, amount } = req.body;
+			const { title, description, amount, payee, categoryId } = req.body;
 			await Transaction.findOneAndUpdate(
 				{ _id },
-				{ description, amount },
+				{ title, description, amount, payee, categoryId },
 				{ new: true }
 			);
 			return res.status(200).json({ message: "Transaction updated!" });

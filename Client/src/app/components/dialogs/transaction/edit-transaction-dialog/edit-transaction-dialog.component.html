@@ -1,0 +1,70 @@
+<div class="edit-container">
+  <div class="container-top">
+    <header class="edit__header">
+      <h2 class="header__title">Edit Transaction</h2>
+
+      <button class="header__close-btn" mat-mini-fab (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </header>
+
+    <mat-divider></mat-divider>
+
+    <main class="edit__main">
+      <div class="transaction__type">
+        <mat-button-toggle-group>
+          <mat-button-toggle class="expanse-btn" value="expanse"
+            ><mat-icon class="expense-icon">expand_circle_down</mat-icon
+            >Expanse</mat-button-toggle
+          >
+          <mat-button-toggle class="income-btn" value="income"
+            ><mat-icon class="income-icon">expand_circle_down</mat-icon
+            >Income</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+
+      <form>
+        <mat-form-field class="transaction__title" appearance="outline">
+          <mat-label>Title:</mat-label>
+          <input matInput [value]="transaction.title" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__describtion" appearance="outline">
+          <mat-label>Description:</mat-label>
+          <input matInput [value]="transaction.description" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__amount" appearance="outline">
+          <mat-label>Amount:</mat-label>
+          <input type="number" matInput [value]="transaction.amount" />
+        </mat-form-field>
+
+        <mat-form-field
+          class="transaction__date-of-creation"
+          appearance="outline"
+        >
+          <mat-label>Date:</mat-label>
+          <input type="date" matInput [value]="transaction.dateOfCreation" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__payee" appearance="outline">
+          <mat-label>Payee:</mat-label>
+          <input type="text" matInput [value]="transaction.payee" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__currency" appearance="standard">
+          <mat-label>Categories:</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </main>
+  </div>
+
+  <footer class="edit__footer">
+    <button mat-stroked-button (click)="onCloseClick()">Cancel</button>
+    <button mat-stroked-button class="save-btn">Save</button>
+  </footer>
+</div>

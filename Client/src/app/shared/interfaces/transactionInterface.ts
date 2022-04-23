@@ -9,5 +9,5 @@ export interface Transaction {
     categoryId: string,
     accountId: string,
     userId: string,
-    dateOfCreation: Date
+    dateOfCreation: string
 }

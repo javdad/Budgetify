@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/services/category-service/category.service';
 import { Category } from 'src/app/shared/interfaces/categoryInterface';
 
 @Component({

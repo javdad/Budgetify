@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-import { Category, CreateCategory, UpdateCategory } from '../shared/interfaces/categoryInterface';
+import { Category, CreateCategory, UpdateCategory } from '../../shared/interfaces/categoryInterface';
 
 @Injectable({
   providedIn: 'root'

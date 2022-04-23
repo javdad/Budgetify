@@ -1,0 +1,60 @@
+<div class="transaction-info">
+  <header class="info__header">
+    <h2 class="header__title">Transaction Info</h2>
+
+    <button class="header__close-btn" mat-mini-fab (click)="onCloseClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <main class="transaction__main">
+    <div class="title__wrapper main__section">
+      <h4 class="content-header">Title:</h4>
+      <p>{{ transaction.title }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="categories__wrapper main__section">
+      <mat-list>
+        <mat-list-item *ngFor="let category of categories"
+          ><h4 class="category__name">{{ category.name }}</h4></mat-list-item
+        >
+      </mat-list>
+    </div>
+
+    <div class="transaction-main__top">
+      <div class="type__wrapper">
+        <h4>type-icon</h4>
+        <p>{{ transaction.type }}</p>
+      </div>
+
+      <div class="transaction__amount">
+        <p>{{ transaction.amount }} {{ transaction.currency }}</p>
+      </div>
+    </div>
+
+    <div class="description__wrapper">
+      <h4 class="content-header">Description:</h4>
+      <p>{{ transaction.description }}</p>
+    </div>
+
+    <div class="date-of-creation__wrapper main__section">
+      <h4 class="content-header">Date:</h4>
+      <p>{{ transaction.dateOfCreation | date: 'dd.MM.yyyy' }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="payee__wrapper main__section">
+      <h4 class="content-header">Payee:</h4>
+      <p>{{ transaction.payee }}</p>
+    </div>
+  </main>
+
+  <footer class="transaction__footer">
+    <button mat-raised-button (click)="onCloseClick()">Close</button>
+  </footer>
+</div>

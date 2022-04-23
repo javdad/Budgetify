@@ -1,12 +1,29 @@
-<mat-card class="card-disabled">
+<mat-card (click)="onClick(account)" [ngClass]="{ 'account-disabled': status }">
   <mat-card-title-group>
     <mat-card-title>{{ account.title }}</mat-card-title>
-    <mat-icon>menu</mat-icon>
+
+    <div class="control-panel">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #menu xPosition="after" class="mat-menu__customize">
+        <button mat-icon-button>
+          <mat-icon (click)="editDialog()">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon (click)="deleteDialog()">delete</mat-icon>
+        </button>
+      </mat-menu>
+    </div>
   </mat-card-title-group>
 
   <mat-card-content>
     <h2>{{ account.balance }}</h2>
   </mat-card-content>
 
-  <mat-card-footer>{{ account.description }}</mat-card-footer>
+  <mat-card-footer
+    ><a (click)="infoDialog(account)">details</a></mat-card-footer
+  >
 </mat-card>

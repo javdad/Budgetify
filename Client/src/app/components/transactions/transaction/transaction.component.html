@@ -1,9 +1,53 @@
 <mat-card>
-  <mat-card-title>
-    {{ transaction.title }}
-  </mat-card-title>
-  <mat-card-subtitle>{{ transaction.payee }}</mat-card-subtitle>
-  <mat-card-content>Date: {{ transaction.dateOfCreation }}</mat-card-content>
-  <mat-card-content>{{ transaction.amount }}</mat-card-content>
-  <mat-card-content>{{ transaction.type }}</mat-card-content>
+  <div class="card__left">
+    <mat-card-subtitle>{{ 'asd' }}</mat-card-subtitle>
+  </div>
+
+  <div class="card__center">
+    <mat-card-title>{{ transaction.title }}</mat-card-title>
+
+    <div class="card-center__bottom">
+      <div class="center-bottom__left">
+        <mat-icon [class]="getClass(transaction.type)">{{
+          getType(transaction.type)
+        }}</mat-icon>
+        <mat-card-content>
+          {{ transaction.type }}
+        </mat-card-content>
+      </div>
+
+      <div class="center-bottom__right">
+        <mat-card-content>{{
+          transaction.dateOfCreation | date: 'dd.MM.yyyy'
+        }}</mat-card-content>
+        <mat-card-content>{{ transaction.payee }}</mat-card-content>
+      </div>
+    </div>
+  </div>
+
+  <div class="card__right">
+    <mat-card-content [class]="getClass(transaction.type)">{{
+      getAmount(transaction.type, transaction.amount)
+    }}</mat-card-content>
+  </div>
+
+  <div class="control-panel">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu xPosition="after" class="mat-menu__customize">
+      <button mat-icon-button (click)="infoDialog(transaction)">
+        <mat-icon class="info-btn">info</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="editDialog(transaction)">
+        <mat-icon class="edit-btn">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="deleteDialog(transaction)">
+        <mat-icon class="delete-btn">delete</mat-icon>
+      </button>
+    </mat-menu>
+  </div>
 </mat-card>

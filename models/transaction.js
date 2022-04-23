@@ -27,11 +27,12 @@ const transactionSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
-	categoryId: {
-		ref: "categories",
-		type: Schema.Types.ObjectId,
-		required: true,
-	},
+	categoryId: [
+		{
+			ref: "categories",
+			type: Schema.Types.ObjectId,
+		},
+	],
 	accountId: {
 		ref: "accounts",
 		type: Schema.Types.ObjectId,

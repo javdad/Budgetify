@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } fro
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class AuthGuard implements CanActivate {
       if (this.auth.isAuthenticated()) {
         return true
       }
+      this.auth.logOut();
       return this.router.navigate(['login'])
   }
   

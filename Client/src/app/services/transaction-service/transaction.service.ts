@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Transaction } from '../shared/interfaces/transactionInterface';
+import { Transaction } from '../../shared/interfaces/transactionInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +15,7 @@ export class TransactionService {
     return this.http.get<Transaction[]>('http://localhost:3000/api/transactions')
   }
 
+  createTransaction(transaction: any): Observable<object> {
+    return this.http.post('http://localhost:3000/api/transactions', transaction)
+  }
 }

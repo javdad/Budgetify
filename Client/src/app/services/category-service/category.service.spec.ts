@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { TestBed } from '@angular/core/testing';
 
 import { CategoryService } from './category.service';
-import { Category, CreateCategory, UpdateCategory } from '../shared/interfaces/categoryInterface';
+import { Category, CreateCategory, UpdateCategory } from '../../shared/interfaces/categoryInterface';
 
 describe('CategoryService', () => {
   let categoryService: CategoryService;

@@ -1,0 +1,64 @@
+<div class="create-container">
+  <div class="container-top">
+    <header class="create__header">
+      <h2 class="header__title">Create Transaction</h2>
+
+      <button class="header__close-btn" mat-mini-fab (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </header>
+
+    <mat-divider></mat-divider>
+
+    <main class="create__main">
+      <div class="transaction__type">
+        <mat-button-toggle-group>
+          <mat-button-toggle class="expanse-btn" value="expanse"
+            ><mat-icon class="expense-icon">expand_circle_down</mat-icon
+            >Expanse</mat-button-toggle
+          >
+          <mat-button-toggle class="income-btn" value="income"
+            ><mat-icon class="income-icon">expand_circle_down</mat-icon
+            >Income</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="transaction__title" appearance="outline">
+          <mat-label>Title:</mat-label>
+          <input matInput type="text" formControlName="title" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__describtion" appearance="outline">
+          <mat-label>Description:</mat-label>
+          <input matInput type="text" formControlName="description" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__amount" appearance="outline">
+          <mat-label>Amount:</mat-label>
+          <input matInput type="number" formControlName="amount" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__payee" appearance="outline">
+          <mat-label>Payee:</mat-label>
+          <input matInput type="text" formControlName="payee" />
+        </mat-form-field>
+
+        <mat-form-field class="transaction__currency" appearance="standard">
+          <mat-label>Categories:</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <footer class="create__footer">
+          <button mat-stroked-button (click)="onCloseClick()">Cancel</button>
+          <button mat-stroked-button class="save-btn" type="submit">
+            Create
+          </button>
+        </footer>
+      </form>
+    </main>
+  </div>
+</div>

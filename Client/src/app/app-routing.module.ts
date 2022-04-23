@@ -22,9 +22,9 @@ const routes: Routes = [
     path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
       {
         path: '', component: SidenavComponent, canActivate:[AuthGuard], children: [
-          { path: '', component: TransactionsComponent },
-          { path: 'categories', component: CategoriesComponent },
-          { path: 'statistics', component: StatisticsComponent },
+          { path: '', canActivate:[AuthGuard], component: TransactionsComponent },
+          { path: 'categories', canActivate:[AuthGuard], component: CategoriesComponent },
+          { path: 'statistics', canActivate:[AuthGuard], component: StatisticsComponent },
         ]
       }
     ]

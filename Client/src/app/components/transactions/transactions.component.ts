@@ -1,20 +1,27 @@
-import { Component, NgModule, OnDestroy, OnInit } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
-import { TransactionService } from 'src/app/services/transaction.service';
+import { AccountService } from 'src/app/services/account-service/account.service';
+import { TransactionService } from 'src/app/services/transaction-service/transaction.service';
+import { Account } from 'src/app/shared/interfaces/accountInterface';
 import { Transaction } from 'src/app/shared/interfaces/transactionInterface';
+import { CreateTransactionDialogComponent } from '../dialogs/transaction/create-transaction-dialog/create-transaction-dialog.component';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss']
 })
-export class TransactionsComponent implements OnInit, OnDestroy {
+export class TransactionsComponent implements OnDestroy, DoCheck{
 
-    transactions: Transaction[] = []
-    transactionSub!: Subscription
+  oldSelectedAccount!: Account
+  selectedAccount!: Account
 
-  constructor( private transaction: TransactionService) { }
+  transactions: Transaction[] = []
+  transactionSub!: Subscription
+
+  constructor( private transaction: TransactionService, private accountService: AccountService, private dialogRef: MatDialog) { }
 
   ngOnDestroy(): void {
     if (this.transactionSub){
@@ -22,10 +29,18 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
-    this.transaction.getTransactions().subscribe((transactions) => {
-      this.transactions = transactions
-    })
+  ngDoCheck(): void {
+    this.selectedAccount = this.accountService.getAccount()
+    if (this.oldSelectedAccount !== this.selectedAccount) {
+      this.oldSelectedAccount = this.selectedAccount
+
+      this.transaction.getTransactions().subscribe((transactions) => {
+        this.transactions = transactions.filter((t) => t.accountId === this.oldSelectedAccount._id)
+      })
+    }
   }
 
+  createDialog() {
+    this.dialogRef.open(CreateTransactionDialogComponent)
+  }
 }

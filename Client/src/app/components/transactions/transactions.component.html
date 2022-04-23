@@ -4,3 +4,13 @@
     [transaction]="transaction"
   ></app-transaction>
 </mat-list>
+
+<div *ngIf="transactions.length === 0" class="no-transactions__wrapper">
+  <div class="no-transactions__container">
+    <h2>You have no any transaction!</h2>
+  </div>
+  <div class="create-transaction">
+    <h3>Do you want to add new transaction?</h3>
+    <button mat-fab (click)="createDialog()" color="warn">Create</button>
+  </div>
+</div>

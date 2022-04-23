@@ -1,0 +1,72 @@
+.create-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    min-width: 20rem;
+    max-width: 25rem;
+    min-height: 30rem;
+    max-height: 100vh;
+}
+
+.create__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header__close-btn {
+        margin: -3rem -1rem 0 0;
+    }
+}
+
+
+.create__main {
+    width: 100%;
+    padding-top: 1.5rem;
+
+    .transaction__type {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.1rem;
+
+        .expense-icon {
+            color: orangered;
+            transform: rotate(180deg);
+            margin-bottom: -0.2rem;
+        }
+        
+        .income-icon {
+            color: #11ee11;
+            margin-top: -0.5rem;
+        }
+
+        mat-icon {
+            font-weight: bold;
+            font-size: 2rem;
+            padding-right: 2.5rem;
+            margin-left: -1.3rem;
+        }
+
+        mat-button-toggle {
+            text-align: center;
+            width: 8rem;
+        }
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.create__footer {
+    button {
+        margin: 0.5rem;
+    }
+
+    .save-btn {
+        color: #fff;
+        background-color: #40ee40;
+    }
+}

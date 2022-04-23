@@ -1,0 +1,53 @@
+<div class="account-info">
+  <header class="account__header">
+    <h2 class="header__title">{{ account.title }}</h2>
+
+    <div class="account-header__right">
+      <div
+        class="account__balance"
+        [ngClass]="{ 'balance-negative': isNegative }"
+      >
+        <p>{{ account.balance }} {{ account.currency }}</p>
+      </div>
+
+      <button class="header__close-btn" mat-mini-fab (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <main class="account__main">
+    <div class="description__wrapper">
+      <h4 class="contet-header">Description</h4>
+      <p>{{ account.description }}</p>
+    </div>
+
+    <div class="currency__wrapper">
+      <div class="currency__header">
+        <h4 class="contet-header">Currency</h4>
+        <mat-icon>dollar</mat-icon>
+      </div>
+      <p>{{ account.currency }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="date-of-creation__wrapper">
+      <h4 class="contet-header">Date of creation</h4>
+      <p>{{ account.dateOfCreation }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="date-of-update__wrapper">
+      <h4 class="contet-header">Date of update</h4>
+      <p>{{ account.dateOfUpdate }}</p>
+    </div>
+  </main>
+
+  <footer class="account__footer">
+    <button mat-raised-button (click)="onCloseClick()">Close</button>
+  </footer>
+</div>

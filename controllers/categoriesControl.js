@@ -48,7 +48,7 @@ class categoriesController {
 		try {
 			const { _id } = req.params;
 			await Category.deleteOne({ _id });
-			return res.status(200).json({ message: "Expense deleted!" });
+			return res.status(200).json({ message: "Category deleted!" });
 		} catch (err) {
 			errorHandler(res, err);
 		}
